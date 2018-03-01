@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Enm\Bundle\Elasticsearch\DependencyInjection;
 
+use Enm\Bundle\Elasticsearch\Command\IndexCreateCommand;
+use Enm\Bundle\Elasticsearch\Command\IndexDropCommand;
 use Enm\Elasticsearch\DocumentManager;
 use Enm\Elasticsearch\DocumentManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,7 +24,8 @@ class EnmElasticsearchExtension extends ConfigurableExtension
     {
         $container->autowire(DocumentManager::class)
             ->setArgument('index', $mergedConfig['index'])
-            ->setArgument('host', $mergedConfig['host']);
+            ->setArgument('host', $mergedConfig['host'])
+            ->setPublic(false);
 
         foreach ((array)$mergedConfig['mappings'] as $className => $mapping) {
             $container->getDefinition(DocumentManager::class)->addMethodCall(
@@ -44,6 +47,15 @@ class EnmElasticsearchExtension extends ConfigurableExtension
             );
         }
 
-        $container->setAlias(DocumentManagerInterface::class, DocumentManager::class);
+        $container->setAlias(DocumentManagerInterface::class, DocumentManager::class)
+            ->setPublic(false);
+
+        $container->autowire(IndexCreateCommand::class)
+            ->addTag('console.command')
+            ->setPublic(false);
+
+        $container->autowire(IndexDropCommand::class)
+            ->addTag('console.command')
+            ->setPublic(false);
     }
 }

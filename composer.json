@@ -9,7 +9,8 @@
   },
   "require": {
     "enm/elasticsearch-5": "^1.0",
-    "symfony/framework-bundle": "^4.0"
+    "symfony/framework-bundle": "^4.0",
+    "symfony/console": "^4.0"
   },
   "license": "MIT",
   "authors": [
