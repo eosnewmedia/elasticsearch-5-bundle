@@ -1,17 +1,22 @@
 {
-    "name": "enm/elasticsearch-5-bundle",
-    "description": "Symfony integration for enm/elasticsearch-5",
-    "type": "symfony-bundle",
-    "require": {
-        "enm/elasticsearch-5": "^1.0",
-        "symfony/framework-bundle": "^4.0"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Philipp Marien",
-            "email": "marien@eosnewmedia.de"
-        }
-    ],
-    "minimum-stability": "stable"
+  "name": "enm/elasticsearch-5-bundle",
+  "description": "Symfony integration for enm/elasticsearch-5",
+  "type": "symfony-bundle",
+  "autoload": {
+    "psr-4": {
+      "Enm\\Bundle\\Elasticsearch\\": "src"
+    }
+  },
+  "require": {
+    "enm/elasticsearch-5": "^1.0",
+    "symfony/framework-bundle": "^4.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Philipp Marien",
+      "email": "marien@eosnewmedia.de"
+    }
+  ],
+  "minimum-stability": "stable"
 }
