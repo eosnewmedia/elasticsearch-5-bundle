@@ -23,8 +23,8 @@ class EnmElasticsearchExtension extends ConfigurableExtension
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
         $container->autowire(DocumentManager::class)
-            ->setArgument('index', $mergedConfig['index'])
-            ->setArgument('host', $mergedConfig['host'])
+            ->addArgument($mergedConfig['index'])
+            ->addArgument($mergedConfig['host'])
             ->setPublic(false);
 
         foreach ((array)$mergedConfig['mappings'] as $className => $mapping) {
